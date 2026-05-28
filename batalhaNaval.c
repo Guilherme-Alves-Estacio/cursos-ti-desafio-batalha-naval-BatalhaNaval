@@ -6,6 +6,7 @@
 
 #define TAMANHO_TABULEIRO 10
 #define NAVIO 3
+#define HABILIDADE 3
 
 int main()
 {
@@ -176,6 +177,69 @@ int main()
     // 0 0 1 0 0
     // 1 1 1 1 1
     // 0 0 1 0 0
+
+    char linha3[TAMANHO_TABULEIRO] = {
+        'A', 'B', 'C', 'D', 'E',
+        'F', 'G', 'H', 'I', 'J'};
+
+    int tabuleiro3[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO] = {0};
+
+    int coneLinha = 0;
+    int coneColuna = 2;
+
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = -i; j <= i; j++)
+        {
+            tabuleiro3[coneLinha + i][coneColuna + j] = HABILIDADE;
+        }
+    }
+
+    int cruzLinha = 4;
+    int cruzColuna = 5;
+
+    for (int j = -2; j <= 2; j++)
+    {
+        tabuleiro3[cruzLinha][cruzColuna + j] = HABILIDADE;
+    }
+
+    tabuleiro3[cruzLinha - 1][cruzColuna] = HABILIDADE;
+    tabuleiro3[cruzLinha + 1][cruzColuna] = HABILIDADE;
+
+    int octLinha = 7;
+    int octColuna = 2;
+
+    tabuleiro3[octLinha][octColuna] = HABILIDADE;
+
+    for (int j = -1; j <= 1; j++)
+    {
+        tabuleiro3[octLinha + 1][octColuna + j] = HABILIDADE;
+    }
+
+    tabuleiro3[octLinha + 2][octColuna] = HABILIDADE;
+
+    printf("=== TABULEIRO BATALHA NAVAL ===\n\n");
+
+    printf("   ");
+
+    for (int i = 0; i < TAMANHO_TABULEIRO; i++)
+    {
+        printf("%c ", linha3[i]);
+    }
+
+    printf("\n");
+
+    for (int i = 0; i < TAMANHO_TABULEIRO; i++)
+    {
+        printf("%2d ", i + 1);
+
+        for (int j = 0; j < TAMANHO_TABULEIRO; j++)
+        {
+            printf("%d ", tabuleiro3[i][j]);
+        }
+
+        printf("\n");
+    }
 
     return 0;
 }
